@@ -1,0 +1,81 @@
+@import "./../../../scss/functions";
+
+// styling of table contents using mixins and scss
+.tableContainer{
+  @include posCorrection(0, relative, 2%, 15%);
+}
+
+.hidden {
+  display: none;
+}
+
+// table formatting
+table {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border-collapse: collapse;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #673ab7;
+  color: white;
+  width: 3%;
+  .personShare{
+    width: 8%;
+  }
+}
+
+// input formatting
+input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.totalExpense {
+  @include posCorrection(0 0 5% 0, relative, 15%, 10%);
+  mat-card{
+    width: 50%;
+    text-align: center;
+  }
+}
+
+.totalExpenseChild {
+  text-align: center;
+  flex: 1;
+  border: 1px solid lightslategrey;
+  display: flex;
+  height: 20%;
+  width: 70%;
+  @include posCorrection(1% auto, relative, 50%, 10%);
+  p{
+    font-size: large;
+    font-weight: bold;
+  }
+
+  span{
+    font-size: large;
+    font-weight: bold;
+  }
+}
+
+.memValue{
+  text-align: left;
+}

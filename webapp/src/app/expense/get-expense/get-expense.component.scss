@@ -1,0 +1,56 @@
+@import "./../../../scss/functions";
+
+// Performing styling for getting all individual expenses
+.tableContainer {
+  @include posCorrection(0, relative, 2%, 15%);
+}
+
+.hidden {
+  display: none;
+}
+
+table {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border-collapse: collapse;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #673ab7;
+  color: white;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.totalExpense {
+  @include posCorrection(auto, relative, 15%, 10%);
+  mat-card{
+    width: 50%;
+    text-align: center;
+  }
+}
+
+mat-card-content {
+  margin: 0 7% 0 7%;
+}

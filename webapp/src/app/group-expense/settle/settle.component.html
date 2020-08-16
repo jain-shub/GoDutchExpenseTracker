@@ -1,0 +1,72 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel
+      [expanded]="true"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Settle amount
+        </mat-panel-title>
+        <mat-panel-description>
+          Pay a friend!
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  <form #SettleForm="ngForm" class="settleArea" (ngSubmit)="(SettleForm.valid)">
+    <div>
+      <mat-label>Pay to User</mat-label>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="toUser"
+            [(ngModel)]="settle.toUser"
+            required
+            hidden
+            minlength="3"
+            #title="ngModel"
+          />
+          {{ dispName }}
+        </mat-form-field>
+      </p>
+
+    </div>
+    <div>
+      <mat-label>amount</mat-label>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            name="lastName"
+            [(ngModel)]="settle.amount"
+            required
+            #title="ngModel"
+          />
+        </mat-form-field>
+
+      </p>
+      <p>
+        <app-alert></app-alert>
+      </p>
+
+    </div>
+  </form>
+</mat-expansion-panel>
+<button class="mat-raised-button" (click)="close()">
+  Close
+</button>
+<button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="settlePost()"
+  [disabled]="!SettleForm.valid"
+>
+  Pay a friend
+</button>
+
+</mat-accordion>
+

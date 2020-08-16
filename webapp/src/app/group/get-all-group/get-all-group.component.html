@@ -1,0 +1,6 @@
+<ng-container *ngIf="groupList?.length > 0">
+  <div *ngFor="let group of groupList; index as index">
+    <mat-icon>local_offer</mat-icon>
+    <a (click)="viewGroup(group)">{{ group.name }}</a>
+  </div>
+</ng-container>

@@ -1,0 +1,130 @@
+/*
+* Heading Style
+*/
+h1 {
+  margin: 1em 0 0.5em 0;
+  color: #757575;
+  font-weight: normal;
+  font-family: "Ultra", sans-serif;
+  font-size: 24px;
+  line-height: 42px;
+  position: relative;
+  left: 12%;
+}
+
+/*
+* Image Style
+*/
+.image-style {
+  position: relative;
+  width: 17%;
+  left: 40%;
+  margin: 3% auto;
+}
+
+/*
+* Button Style
+*/
+.buttonStyling {
+  display: inline-flex;
+  position: relative;
+  left: 12%;
+}
+
+/*
+* Card for Plaid Button Style
+*/
+.card {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #ffffff;
+  position: relative;
+  width: 40%;
+  height: 30%;
+  left: 27%;
+  margin-bottom: 3%;
+}
+
+/*
+* Exit Button Style
+*/
+.exit-button {
+  background-color: rgb(255, 255, 255);
+  transition-duration: 350ms;
+  transition-property: background-color, box-shadow;
+  transition-timing-function: ease-in-out;
+  -webkit-appearance: button;
+  border: 0px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  height: 56px;
+  width: 210px;
+  outline: 0px;
+  text-align: center;
+  text-transform: none;
+  padding: 0px 2em;
+  margin-left: 3%;
+  cursor: pointer;
+}
+
+/*
+* Table Style
+*/
+table {
+  width: 100%;
+}
+
+/*
+* Form Field Style
+*/
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+/*
+* Table elements Style
+*/
+td,
+th {
+  width: 25%;
+}
+
+/*
+* Navbar Image Style
+*/
+.navbarImage {
+  height: 2em;
+  position: relative;
+  //margin: 0.75em 2.5em 0.75em 2.5em;
+}
+
+/*
+* Toolbar Style
+*/
+#toolbarMenu {
+  cursor: pointer;
+  margin-right: 20px;
+}
+#mainToolbar .toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+/*
+* Toolbar Icon Style
+*/
+#mainToolbar .toolbar-icon {
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+/*
+* Remove Button Style
+*/
+.removeButton {
+  margin-top: 3%;
+  left: 47%;
+}

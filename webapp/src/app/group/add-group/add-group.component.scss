@@ -1,0 +1,17 @@
+@import "./../../../scss/functions";
+
+//Performing styling of add group component
+.mat-display-1 {
+  text-align: center;
+}
+
+mat-form-field {
+  margin: 0 5% 0 5%;
+}
+
+.buttonBoard {
+  @include posCorrection(5% 0 0 5%, relative, 0, 0);
+  button {
+    margin-right: 2%;
+  }
+}

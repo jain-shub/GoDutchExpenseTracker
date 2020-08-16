@@ -1,0 +1,6 @@
+@mixin posCorrection($marginVal, $pos, $leftVal, $topVal){
+  margin: $marginVal;
+  position: $pos;
+  left: $leftVal;
+  top: $topVal;
+}

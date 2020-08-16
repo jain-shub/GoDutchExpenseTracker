@@ -1,0 +1,66 @@
+<mat-accordion class="example-headers-align">
+  <form [formGroup]="form">
+    <div class="mat-display-1">Add a Group</div>
+    <app-alert></app-alert>
+
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Enter Group Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field appearance="outline">
+        <mat-label>Group Name</mat-label>
+
+        <input
+          matInput
+          [errorStateMatcher]="utility.firstNameMatcher"
+          [formControl]="utility.firstNameFormControl"
+          [(ngModel)]="group.name"
+          placeholder="Group Name"
+          matTooltip="Enter name based on what type of group you want to make!"
+          matTooltipPosition="after"
+        />
+        <mat-hint>example</mat-hint>
+        <mat-error
+          *ngIf="
+            utility.firstNameFormControl.hasError('firstName') &&
+            !utility.firstNameFormControl.hasError('required')
+          "
+        >
+          Please enter a valid group Name
+        </mat-error>
+        <mat-error *ngIf="utility.firstNameFormControl.hasError('required')">
+          Group Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div formArrayName="memberEmail">
+        <mat-form-field
+          *ngFor="let item of memberEmail.controls; let pointIndex = index"
+          [formGroupName]="pointIndex"
+          appearance="outline"
+        >
+          <mat-label>Member's Email</mat-label>
+          <input
+            matInput
+            placeholder="Member's Email"
+            formControlName="email"
+          />
+          <mat-hint>example@domain.com</mat-hint>
+        </mat-form-field>
+        <button mat-icon-button (click)="addMember()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="buttonBoard">
+        <button mat-raised-button color="primary" (click)="onSubmit()">
+          Add Group!
+        </button>
+        <button class="mat-raised-button" color="accent" (click)="close()">
+          Exit Group!
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </form>
+  <br />
+</mat-accordion>

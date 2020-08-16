@@ -1,0 +1,96 @@
+@import "./../../scss/functions";
+
+// scss for different components of home component
+.tag1 {
+  margin: 5em;
+  font-weight: 100;
+}
+
+.symbol {
+  transform: scale(8);
+  @include posCorrection(0, relative, -2em, -1.5em);
+}
+
+div {
+  display: block;
+}
+
+.tag2 {
+  font-size: large;
+  color: darkgrey;
+  @include posCorrection(2em 0 0 0, relative, 0, 0);
+}
+
+.app-features {
+  @include posCorrection(0, relative, 0, 5em);
+}
+
+// mat icon styling
+mat-icon {
+  font-size: 3em;
+  margin-right: 1.5em;
+  cursor: pointer;
+}
+
+mat-grid-list {
+  margin-left: 6em;
+  margin-right: 6em;
+}
+
+.mat-display-2 {
+  font-weight: bolder;
+  color: darkslategray;
+  width: 90%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.headShow {
+  background: url(../../assets/backgroundImg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 5em;
+}
+
+app-app-footer {
+  @include posCorrection(0, relative, 0, 15em);
+}
+
+.cardContainer {
+  border: solid grey;
+  border-radius: 10px;
+  box-shadow: 2px 2px lightslategray;
+  mat-icon {
+    @include posCorrection(0, relative, 40%, 0);
+  }
+  mat-card-title {
+    position: relative;
+    text-align: center;
+  }
+}
+
+.testimonials {
+  @include posCorrection(0 0 1% 0, relative, 0, 10em);
+  mat-card {
+    @include posCorrection(0 0 4% 0, relative, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+      rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset;
+    mat-card-header {
+      @include posCorrection(0, relative, 1em, 1em);
+    }
+    .pic {
+      width: 15em;
+      height: 18em;
+      @include posCorrection(0, relative, 25%, 1em);
+    }
+    .example-header-image {
+      position: relative;
+      border-radius: 50%;
+      width: 3em;
+      background-size: cover;
+    }
+    .testimonyStatement {
+      text-justify: newspaper;
+    }
+  }
+}

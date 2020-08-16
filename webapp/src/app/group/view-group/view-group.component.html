@@ -1,0 +1,91 @@
+<mat-accordion class="example-headers-align">
+  <div class="mat-display-1">{{ name }}</div>
+  <app-alert></app-alert>
+  <form [formGroup]="form">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Group Basics
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field appearance="outline">
+        <mat-label>Group Name</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="name"
+          placeholder="Group Name"
+          formControlName="name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Group Type</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="groupType"
+          readonly
+          placeholder="Group Type"
+          formControlName="groupType"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Created By</mat-label>
+        <input
+          matInput
+          [(ngModel)]="createdByName"
+          readonly
+          placeholder="Created By"
+          formControlName="createdByName"
+        />
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Member Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div formArrayName="memberEmail">
+        <div
+          *ngFor="let item of memberEmail.controls; let pointIndex = index"
+          [formGroupName]="pointIndex"
+        >
+          <mat-form-field *ngIf="item.value.email" appearance="outline">
+            <mat-label>Member's Email</mat-label>
+            <input
+              matInput
+              placeholder="Member's Email"
+              formControlName="email"
+            />
+            <mat-hint>example@domain.com</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <button mat-icon-button (click)="addMember()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-expansion-panel>
+    <div class="buttonBoard">
+      <button mat-raised-button color="accent" (click)="onDisable(true)">
+        Update!
+      </button>
+      &nbsp;&nbsp;
+      <button class="mat-raised-button" (click)="close()">Close Group!</button>
+      &nbsp;&nbsp;
+      <button mat-raised-button color="warn" (click)="delete()">
+        Delete Group!
+      </button>
+      &nbsp;&nbsp;
+      <button mat-raised-button color="primary" (click)="save()">
+        Add Group Expense!
+      </button>
+      <button mat-raised-button color="accent" (click)="viewGroupExpenses()">
+        View Group Expenses!
+      </button>
+    </div>
+  </form>
+</mat-accordion>

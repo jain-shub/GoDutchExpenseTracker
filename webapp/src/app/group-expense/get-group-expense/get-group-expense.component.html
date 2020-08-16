@@ -1,0 +1,216 @@
+<div class="totalExpense">
+  <mat-card>
+    <mat-card-content>
+      <div *ngIf="total > 0">
+        <p>
+          You Are Owed <strong>${{ total | number: "1.2" }}</strong> in total
+        </p>
+      </div>
+      <div *ngIf="total < 0">
+        <p>
+          You Owe <strong>${{ total * -1 | number: "1.2" }}</strong> in total
+        </p>
+      </div>
+      <div *ngFor="let recipient of totalValueMap | keyvalue">
+        <div *ngIf="recipient.value < 0">
+          You owe {{ recipient.key.firstName }} {{ recipient.key.lastName }} ${{
+            recipient.value * -1
+          }}
+          <mat-icon (click)="settleExpense(recipient.key.id,recipient.key.firstName,recipient.value)"
+            >event_available</mat-icon
+          >
+        </div>
+        <div *ngIf="recipient.value > 0">
+          You are owed ${{ recipient.value }} by {{ recipient.key.firstName }}
+          {{ recipient.key.lastName }}
+          <!-- <mat-icon (click)="settleExpense()">event_available</mat-icon> -->
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-alert></app-alert>
+<div *ngIf="groupExpenseList?.length > 0" class="tableContainer">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Expense Name</th>
+        <th>Amount</th>
+        <th>Paid By</th>
+        <th>Created By</th>
+        <th class="personShare">Person share</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of groupExpenseList">
+        <td>
+          <input
+            matInput
+            name="name"
+            [(ngModel)]="expense.name"
+            [disabled]="!expense.isEditable"
+            required
+          />
+        </td>
+        <td>
+          <input
+            matInput
+            name="Amount"
+            [(ngModel)]="expense.amount"
+            [disabled]="!expense.isEditable"
+            required
+          />
+        </td>
+        <td>
+          <input
+            matInput
+            name="paidBy"
+            [ngModel]="expense.paidBy"
+            disabled
+            required
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="createdBy"
+            [ngModel]="expense.createdBy"
+            required
+            disabled
+          />
+        </td>
+
+        <td>
+          <div *ngFor="let item of percVal; let pointIndex = index">
+            <div *ngIf="item[0].id === expense.id">
+              <div *ngFor="let val of item[1]">
+                <input value="{{ val[0].firstName }}" name="member" class="memValue" disabled />
+                <input
+                  type="number"
+                  placeholder="ratio"
+                  name="ratio"
+                  [(ngModel)]="val[1]"
+                  step="0.01"
+                  min="0"
+                  max="99"
+                  [disabled]="!expense.isEditable"
+                  class="memValue"
+                  required
+                />
+                ({{ expense.amount * val[1] | number: "1.2" }})
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <button (click)="deleteExpense(expense)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          &nbsp;
+          <button
+            (click)="expense.isEditable = !expense.isEditable"
+            *ngIf="!expense.isEditable"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            *ngIf="expense.isEditable"
+            (click)="updateRowData(expense)"
+            (click)="expense.isEditable = !expense.isEditable"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+          <!-- <button (click)="settleExpense(expense)">
+            <mat-icon>event_available</mat-icon>
+          </button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br />
+<hr />
+<br />
+<div *ngIf="groupSettledExpenseList?.length > 0" class="tableContainer">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Expense Name</th>
+        <th>Amount</th>
+        <th>Paid By</th>
+        <th>Created By</th>
+        <th>Person share</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let settledExpense of groupSettledExpenseList">
+        <td>
+          <input
+            matInput
+            name="name"
+            [(ngModel)]="settledExpense.name"
+            disabled
+            required
+          />
+        </td>
+        <td>
+          <input
+            matInput
+            name="Amount"
+            [(ngModel)]="settledExpense.amount"
+            disabled
+            required
+          />
+        </td>
+        <td>
+          <input
+            matInput
+            name="paidBy"
+            [ngModel]="settledExpense.paidBy"
+            disabled
+            required
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="createdBy"
+            [ngModel]="settledExpense.createdBy"
+            required
+            disabled
+          />
+        </td>
+
+        <td>
+          <div *ngFor="let item of percVal; let pointIndex = index">
+            <div *ngIf="item[0].id === settledExpense.id">
+              <div *ngFor="let val of item[1]">
+                <input value="{{ val[0].firstName }}" name="member" disabled />
+                <input
+                  type="number"
+                  placeholder="ratio"
+                  name="ratio"
+                  [(ngModel)]="val[1]"
+                  step="1"
+                  min="0"
+                  max="99"
+                  disabled
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <button (click)="deleteExpense(settledExpense)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

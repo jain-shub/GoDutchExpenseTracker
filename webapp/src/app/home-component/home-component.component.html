@@ -1,0 +1,88 @@
+<app-app-header></app-app-header>
+
+<mat-grid-list cols="2" gutterSize="10px" class="headShow" rowHeight="28em">
+  <mat-grid-tile>
+    <md-content>
+      <mat-grid-list cols="6" gutterSize="10px">
+        <md-content colspan="6">
+          <div class="mat-display-2">
+            Less stress when sharing expenses for {{ reflectIcon.name }}
+          </div>
+        </md-content>
+        <md-content>
+          <mat-icon (click)="changeIcon('0')">{{
+            iconPosition[0].icon
+          }}</mat-icon>
+          <mat-icon (click)="changeIcon('1')">{{
+            iconPosition[1].icon
+          }}</mat-icon>
+          <mat-icon (click)="changeIcon('2')">{{
+            iconPosition[2].icon
+          }}</mat-icon>
+          <mat-icon (click)="changeIcon('3')">{{
+            iconPosition[3].icon
+          }}</mat-icon>
+        </md-content>
+        <md-content>
+          <p class="tag2">
+            Keep track of your shared expenses and balances with housemates,
+            trips, groups, friends, and family.
+          </p>
+        </md-content>
+      </mat-grid-list>
+    </md-content>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <md-card-content>
+      <mat-icon class="symbol">{{ reflectIcon.icon }}</mat-icon>
+    </md-card-content>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list class="app-features" cols="4" rowHeight="2:1" gutterSize="2em">
+  <mat-grid-tile
+    *ngFor="let tab of tabVal; let idx = index"
+    class="cardContainer"
+  >
+    <mat-card>
+      <div>
+        <mat-card-content>
+          <mat-icon>{{ tab.icon }}</mat-icon>
+          <br />
+          <mat-card-title>{{ tab.name }}</mat-card-title>
+          <hr />
+          <p>{{ tab.title }}</p>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list class="testimonials" cols="3" rowHeight="1:1" gutterSize="3em">
+  <mat-grid-tile
+    *ngFor="let testimony of testimonials; let idx = index"
+    class="cardContainer"
+  >
+    <mat-card>
+      <mat-card-header>
+        <img
+          src="../../assets/{{ testimony.image }}"
+          mat-card-avatar
+          class="example-header-image"
+        />
+        <mat-card-title>{{ testimony.name }}</mat-card-title>
+        <mat-card-subtitle>{{ testimony.category }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <img
+          mat-card-image
+          src="{{ testimony.image }}"
+          alt="Photo of {{ testimony.name }}"
+          class="pic"
+        />
+        <hr>
+        <p class="testimonyStatement">{{ testimony.statement }}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-app-footer></app-app-footer>

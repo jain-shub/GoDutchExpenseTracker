@@ -1,0 +1,111 @@
+<!-- Customized Navbar for the Banking page -->
+<mat-toolbar id="mainToolbar" color="primary">
+  <img class="navbarImage" src="../../assets/ExpenseDistLogo.jpg" />
+  GoDutch
+  <span class="toolbar-spacer"></span>
+
+  <mat-icon
+    class="toolbar-icon"
+    matBadge="8"
+    matBadgePosition="after"
+    matBadgeColor="accent"
+    [mat-menu-trigger-for]="profileView"
+  >
+    settings_application
+  </mat-icon>
+
+  <mat-menu #profileView="matMenu">
+    <button mat-menu-item (click)="logout()">Sign out</button>
+  </mat-menu>
+</mat-toolbar>
+
+<!-- Banking Image -->
+<img src="../../assets/bankImage.png" class="image-style" />
+
+<!-- Plaid Financial Service Button -->
+<div class="card">
+  <h1>Hi, Welcome to Banking with GoDutch!</h1>
+  <div class="buttonStyling">
+    <mr-ngx-plaid-link-button
+      env="sandbox"
+      publicKey="1c7ae602c87b06071eb2a1e8473440"
+      clientName="GoDutch"
+      (Success)="onPlaidSuccess($event)"
+      (Exit)="onPlaidExit($event)"
+      (Load)="onPlaidLoad($event)"
+      (Event)="onPlaidEvent($event)"
+      className="launch-plaid-link-button"
+      buttonText="ADD ACCOUNT"
+      (Click)="onPlaidClick($event)"
+    ></mr-ngx-plaid-link-button>
+    <button id="button" class="exit-button" (click)="exit()">
+      EXIT
+    </button>
+  </div>
+</div>
+
+<!-- Table to store all the transactions for the accounts linked by the user -->
+<mat-tab-group>
+  <mat-tab *ngFor="let acc of accounts" [label]="acc.institutionName">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event, acc)"
+        placeholder="Example: Uber"
+      />
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="acc.transactions" matSort>
+        <ng-container matColumnDef="account">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ACCOUNT</th>
+          <td mat-cell *matCellDef="let transaction" style="color: grey;">
+            {{ transaction.account }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>DATE</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>NAME</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>AMOUNT</th>
+          <td mat-cell *matCellDef="let transaction" style="color: green;">
+            {{ transaction.amount }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORY</th>
+          <td mat-cell *matCellDef="let transaction">
+            {{ transaction.category }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let transaction; columns: displayedColumns"
+        ></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+    <button
+      class="removeButton"
+      mat-raised-button
+      color="primary"
+      (click)="removeAccount(acc)"
+    >
+      UNLINK
+    </button>
+  </mat-tab>
+</mat-tab-group>

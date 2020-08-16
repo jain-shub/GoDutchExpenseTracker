@@ -1,0 +1,24 @@
+<!-- Display Page When No Account exists for the user -->
+<div class="content-alignment" *ngIf="!accountsExist">
+  <h1 class="heading">TRACK YOUR ACCOUNTS WITH GODUTCH!</h1>
+  <img src="../../assets/bankImage.png" class="image-style" />
+  <div class="button-alignment">
+    <button id="button" class="exit-button" (click)="exit()">
+      EXIT
+    </button>
+    <mr-ngx-plaid-link-button
+      env="sandbox"
+      publicKey="1c7ae602c87b06071eb2a1e8473440"
+      clientName="GoDutch"
+      (Success)="onPlaidSuccess($event)"
+      (Exit)="onPlaidExit($event)"
+      (Load)="onPlaidLoad($event)"
+      (Event)="onPlaidEvent($event)"
+      className="launch-plaid-link-button"
+      buttonText="Link Your Bank Account"
+      (Click)="onPlaidClick($event)"
+    ></mr-ngx-plaid-link-button>
+  </div>
+</div>
+<!-- Displays the Account Component if there is 1 or more Accounts for the user -->
+<app-account [accounts]="accountsParent" *ngIf="accountsExist"></app-account>

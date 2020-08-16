@@ -1,0 +1,189 @@
+<div class="totalExpense">
+  <mat-card>
+    <mat-card-content>
+      <p>Total Amount Owed : <span>${{ totalAmountOwed }}</span></p>
+
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <p>Total Amount Due : <span>${{ totalAmountOwes }}</span></p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<app-alert></app-alert>
+<div *ngIf="amountOwedBy?.length > 0" class="tableContainer">
+  <h2>Amount You Are Owed By</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Added by</th>
+        <th>Expense Name</th>
+        <th>Amount</th>
+        <th>Owe %</th>
+        <th>Due %</th>
+        <th>Expense Type</th>
+        <th>Owed By</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of amountOwedBy; index as index">
+        <td class="hidden">{{ expense?.id }}</td>
+        <td>
+          <input type="text" [(ngModel)]="expense.fromUserName" readonly />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.name"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.amount"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.fromUserSplitPercentageValue"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.toUserSplitPercentageValue"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.type"
+            *ngIf="!expense.isEditable"
+          />
+          <select
+            [(ngModel)]="type"
+            name="expenseType"
+            *ngIf="expense.isEditable"
+            (ngModelChange)="onExpenseTypeChange($event)"
+          >
+            <option *ngFor="let exp of expenseType" [value]="exp">{{
+              exp
+            }}</option>
+          </select>
+        </td>
+        <td><input type="text" [(ngModel)]="expense.toUserName" readonly /></td>
+        <td>
+          <button (click)="deleteExpense(expense)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          &nbsp;
+          <button
+            (click)="expense.isEditable = !expense.isEditable"
+            *ngIf="!expense.isEditable"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            *ngIf="expense.isEditable"
+            (click)="updateRowData(expense)"
+            (click)="expense.isEditable = !expense.isEditable"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="amountOwes?.length > 0" class="tableContainer">
+  <br />
+  <h2>Amount You Owe</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Added by</th>
+        <th>Expense Name</th>
+        <th>Amount</th>
+        <th>Owe %</th>
+        <th>Due %</th>
+        <th>Expense Type</th>
+        <th>Owe Money To</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of amountOwes; index as index">
+        <td class="hidden">{{ expense?.id }}</td>
+        <td>
+          <input type="text" [(ngModel)]="expense.fromUserName" readonly />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.name"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.amount"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.fromUserSplitPercentageValue"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.toUserSplitPercentageValue"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="expense.type"
+            [disabled]="!expense.isEditable"
+          />
+        </td>
+        <td><input type="text" [(ngModel)]="expense.toUserName" readonly /></td>
+        <td>
+          <button (click)="deleteExpense(expense)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          &nbsp;
+          <button
+            (click)="expense.isEditable = !expense.isEditable"
+            *ngIf="!expense.isEditable"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            *ngIf="expense.isEditable"
+            (click)="updateRowData(expense)"
+            (click)="expense.isEditable = !expense.isEditable"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

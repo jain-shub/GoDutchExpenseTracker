@@ -1,0 +1,82 @@
+<app-app-header></app-app-header>
+<div>
+  <img src="../../assets/ExpenseDistLogo.jpg" routerLink="/" />
+  <div class="mat-display-1">Welcome to GoDutch</div>
+<br/>
+<br/>
+<br/>
+  <form #loginForm="ngForm" (ngSubmit)="(loginForm.valid)">
+      <mat-card>
+        <mat-card-header>
+          <div class="mat-headline">Sign In!</div>
+          <app-alert></app-alert>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+
+            <input
+              matInput
+              [errorStateMatcher]="utility.emailMatcher"
+              [(ngModel)]="user.email"
+              matTooltip="{{ utility.emailTip }}"
+              matTooltipPosition="after"
+              [formControl]="utility.emailFormControl"
+              placeholder="example@gmail.com"
+            />
+            <mat-hint>example@domain.com</mat-hint>
+            <mat-error
+              *ngIf="
+                utility.emailFormControl.hasError('email') &&
+                !utility.emailFormControl.hasError('required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="utility.emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br /><br />
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              id="pwdField"
+              type="password"
+              matInput
+              [formControl]="utility.passwordFormControl"
+              [(ngModel)]="user.password"
+              matTooltip="{{ utility.passwordTip }}"
+              matTooltipPosition="after"
+              placeholder="password"
+              matTooltip="Info about the action"
+            />
+            <mat-icon (click)="viewPassword()">visibility</mat-icon>
+            <mat-hint>samplePwd@123S</mat-hint>
+            <mat-error
+              *ngIf="
+                utility.passwordFormControl.hasError('password') &&
+                !utility.passwordFormControl.hasError('required')
+              "
+            >
+              Please enter a valid Password
+            </mat-error>
+            <mat-error *ngIf="utility.passwordFormControl.hasError('required')">
+              User Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="login()">
+            Login
+          </button>
+          <div class="forgotPassword">
+            <span
+              >Forgot your password?
+              <a href="/password_reset">Click Here</a></span
+            >
+          </div>
+        </mat-card-actions>
+      </mat-card>
+  </form>
+</div>

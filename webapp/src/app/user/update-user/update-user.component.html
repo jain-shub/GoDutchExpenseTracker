@@ -1,0 +1,109 @@
+<mat-accordion class="example-headers-align">
+  <!-- <div class="mat-display-1">Update account details!</div> -->
+  <mat-expansion-panel
+      [expanded]="true"
+      hideToggle
+    >
+    <!-- (opened)="setStep(0)" -->
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          User Details
+        </mat-panel-title>
+        <mat-panel-description>
+          Update your personal information
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  <form #userDetails="ngForm" class="updationArea" (ngSubmit)="(userDetails.valid)">
+    <div>
+      <mat-label>First Name</mat-label>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="firstName"
+            [(ngModel)]="user.firstName"
+            required
+            minlength="3"
+            #title="ngModel"
+          />
+          <mat-error *ngIf="title.invalid"
+            >Please enter a First Name.</mat-error
+          >
+        </mat-form-field>
+      </p>
+
+    </div>
+    <div>
+      <mat-label>Last Name</mat-label>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            name="lastName"
+            [(ngModel)]="user.lastName"
+            required
+            minlength="3"
+            #title="ngModel"
+          />
+          <mat-error *ngIf="title.invalid">Please enter a Last Name.</mat-error>
+        </mat-form-field>
+
+      </p>
+
+    </div>
+    <div>
+      <mat-label>Email id</mat-label>
+      <p>
+        <mat-form-field>
+          <textarea
+            matInput
+            name="Email"
+            [(ngModel)]="user.email"
+            required
+            #content="ngModel"
+          ></textarea>
+          <mat-error *ngIf="content.invalid"
+            >Please enter a User Email.</mat-error
+          >
+        </mat-form-field>
+      </p>
+    </div>
+    <div>
+      <mat-label>Password</mat-label>
+      <p>
+        <mat-form-field>
+          <input
+            matInput
+            name="Password"
+            [(ngModel)]="user.password"
+            required
+            minlength="6"
+            #content="ngModel"
+          >
+          <mat-error *ngIf="content.invalid"
+            >Please enter a valid Password.</mat-error
+          >
+        </mat-form-field>
+      </p>
+    </div>
+  </form>
+</mat-expansion-panel>
+<button class="mat-raised-button" (click)="close()">
+  Close
+</button>
+<button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  [routerLink]="['/user/dashboard/']"
+  routerLinkActive="router-link-active"
+  (click)="onSaveUpdate()"
+  [disabled]="!userDetails.valid"
+>
+  Update Details
+</button>
+
+</mat-accordion>

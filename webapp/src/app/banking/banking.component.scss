@@ -1,0 +1,60 @@
+/*
+* Exit Button Style
+*/
+.exit-button {
+  background-color: rgb(255, 255, 255);
+  transition-duration: 350ms;
+  transition-property: background-color, box-shadow;
+  transition-timing-function: ease-in-out;
+  -webkit-appearance: button;
+  border: 0px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  height: 56px;
+  width: 290px;
+  outline: 0px;
+  text-align: center;
+  text-transform: none;
+  padding: 0px 2em;
+  margin-right: 3%;
+  cursor: pointer;
+}
+
+/*
+* Image Style
+*/
+.image-style {
+  width: 350px;
+  position: relative;
+  width: 22%;
+  left: 37%;
+  margin: 8% auto;
+}
+
+/*
+* Button Style
+*/
+.button-alignment {
+  display: inline-flex;
+  position: relative;
+  left: 7%;
+}
+
+/*
+* Heading Style
+*/
+.heading {
+  margin: 1em 0 0.5em 0;
+  color: #757575;
+  font-weight: normal;
+  font-family: "Ultra", sans-serif;
+  font-size: 36px;
+  line-height: 42px;
+  text-transform: uppercase;
+  left: 22.5%;
+  position: relative;
+  opacity: 80%;
+}

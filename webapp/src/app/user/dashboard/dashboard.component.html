@@ -1,0 +1,91 @@
+<mat-toolbar id="mainToolbar" color="primary">
+  <mat-icon (click)="onToolbarMenuToggle()" id="toolbarMenu">subject</mat-icon>
+  <img src="../../assets/ExpenseDistLogo.jpg" />
+  GoDutch
+  <span class="toolbar-spacer"></span>
+
+  <mat-icon
+    class="toolbar-icon"
+    matBadge="8"
+    matBadgePosition="after"
+    matBadgeColor="accent"
+    [mat-menu-trigger-for]="profileView"
+  >
+    settings_application
+  </mat-icon>
+
+  <mat-menu #profileView="matMenu">
+    <button mat-menu-item (click)="updateUserAccount()">
+      Account Settings
+    </button>
+    <button mat-menu-item (click)="logout()">Sign out</button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container id="sidenavContainer" fullscreen>
+  <mat-sidenav
+    mode="side"
+    #sidenav
+    id="sidenav"
+    [class.menu-open]="isMenuOpen"
+    [class.menu-close]="!isMenuOpen"
+    opened
+  >
+
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="avatar"></div>
+
+      <mat-card-title routerLink="/user/dashboard/user-expense">
+        {{ user.firstName }} {{ user.lastName }}
+      </mat-card-title>
+      <mat-card-subtitle>User</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+    <!-- <mat-list id="menus" dense> -->
+
+      <!-- <mat-list-item>
+        <button class="menu-item" mat-flat-button>
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </button>
+      </mat-list-item> -->
+      <mat-card class="groupList">
+          <mat-card-content>
+            <mat-list-item>
+              <div mat-list-item class="one">
+                <div class="list-head">
+                  <mat-label>
+                    GROUPS
+                  </mat-label>
+                  <button mat-button routerLink="/user/dashboard/add-group">
+                    <mat-icon>group_add</mat-icon>Add
+                  </button>
+                </div>
+                <app-get-all-group></app-get-all-group>
+              </div>
+            </mat-list-item>
+          </mat-card-content>
+      </mat-card>
+    <!-- </mat-list> -->
+  </mat-sidenav>
+
+  <mat-sidenav-content [ngStyle]="{ 'margin-left.px': contentMargin }">
+    <mat-toolbar>
+      <div class="dashboardButtons">
+        <button
+          mat-raised-button
+          color="warn"
+          routerLink="/user/dashboard/add-user-expense"
+        >
+          Add Expense
+        </button>
+        <button mat-raised-button color="accent" (click)="onBanking()">
+          Banking
+        </button>
+      </div>
+    </mat-toolbar>
+    <!-- <app-get-expense></app-get-expense> -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

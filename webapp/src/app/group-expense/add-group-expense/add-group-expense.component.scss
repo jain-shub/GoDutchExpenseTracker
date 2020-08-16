@@ -1,0 +1,30 @@
+@import "./../../../scss/functions";
+
+// performing styling of add group expantion panel components
+nav{
+  background-color: saturate($color: #673ab7, $amount: 0);
+  height: 4em;
+  img{
+    height: 2.5em;
+    @include posCorrection(0.75em 0em 0em 15em, relative, 0, 0);
+  }
+  .mat-headline{
+    color: #fff;
+    display: inline;
+    @include posCorrection(0, relative, 1em, -0.25em);
+  }
+  button{
+    @include posCorrection(0 2em 0 0, relative, 50em, -0.75em);
+  }
+  a{
+    text-decoration: none;
+  }
+  .profileMenu{
+    display: inline;
+    @include posCorrection(0, relative, 45em, 0);
+  }
+  mat-label{
+    @include posCorrection(0, relative, 0.5em, -0.75em);
+    color: white;
+  }
+}

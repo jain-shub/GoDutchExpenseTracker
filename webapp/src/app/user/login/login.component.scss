@@ -1,0 +1,33 @@
+@import "./../../../scss/functions";
+
+// Setting size of image and correcting position
+img {
+  height: 3em;
+  cursor: pointer;
+  @include posCorrection(0, relative, 38%, 1em);
+}
+
+// Setting card view and correcting position
+mat-card{
+  width: 30%;
+  text-align: center;
+  @include posCorrection(0, relative, 35%, 0);
+  mat-icon {
+    @include posCorrection(0, relative, 12em, -1em);
+        display: inline;
+        font-size: 100%;
+        cursor: pointer;
+      }
+}
+
+.mat-display-1 {
+  color: grey;
+  display: inline;
+  @include posCorrection(0, relative, 39%, 0);
+}
+
+// Setting display of healines
+.mat-headline{
+  color: grey;
+  text-align: center;
+}
